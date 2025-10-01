@@ -31,9 +31,11 @@ You need a C compiler installed on your system. The most common one is *gcc*, wh
 ## **Running the Application**
 
 Once the compilation is successful, you can run the program with this command:
+
 **On macOS or Linux:**
 
 './contact_manager'
+
 **On Windows:**
 
 'contact_manager.exe'
