@@ -23,6 +23,7 @@ void viewContacts();
 
 int main() {
     int choice;
+    loadContactsFromFile();
 
     while (1) { // Infinite loop for the menu
         printf("\n--- Contact Management System ---\n");
@@ -40,11 +41,11 @@ int main() {
 
         switch (choice) {
             case 1:
-                // addContact(); // We will implement this soon
+                addContact();
                 printf("Add contact function called.\n");
                 break;
             case 2:
-                // viewContacts(); // We will implement this soon
+                viewContacts();
                 printf("View contacts function called.\n");
                 break;
             case 3:
@@ -55,6 +56,7 @@ int main() {
                 break;
             case 5:
                 printf("Exiting program. Goodbye!\n");
+                saveContactsToFile();
                 return 0; // Exit the program
             default:
                 printf("Invalid choice. Please try again.\n");
@@ -102,11 +104,33 @@ void viewContacts() {
     }
     printf("--------------------\n");
 }
-// ... inside the switch
-case 1:
-    addContact();
-    break;
-case 2:
-    viewContacts();
-    break;
-// ...
+
+// Function to save all contacts to a file
+void saveContactsToFile() {
+    FILE *file = fopen("contacts.dat", "wb"); // wb = write binary
+    if (file == NULL) {
+        printf("Error opening file for writing.\n");
+        return;
+    }
+
+    fwrite(contacts, sizeof(Contact), contact_count, file);
+    fclose(file);
+}
+
+// Function to load contacts from a file
+void loadContactsFromFile() {
+    FILE *file = fopen("contacts.dat", "rb"); // rb = read binary
+    if (file == NULL) {
+        // This is okay on the first run, means no file exists yet
+        return; 
+    }
+
+    // Read structs one by one until the end of the file
+    while(fread(&contacts[contact_count], sizeof(Contact), 1, file) == 1) {
+        contact_count++;
+        if (contact_count >= MAX_CONTACTS) {
+            break; // Stop if the array is full
+        }
+    }
+    fclose(file);
+}
