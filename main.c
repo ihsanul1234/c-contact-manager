@@ -38,6 +38,7 @@ int main() {
 
         // Clear the input buffer to prevent issues with next input
         while(getchar() != '\n'); 
+        system("clear");
 
         switch (choice) {
             case 1:
@@ -49,9 +50,11 @@ int main() {
                 printf("View contacts function called.\n");
                 break;
             case 3:
+                searchContact();           
                 printf("Search contact function called.\n");
                 break;
             case 4:
+                deleteContact();                
                 printf("Delete contact function called.\n");
                 break;
             case 5:
@@ -133,4 +136,54 @@ void loadContactsFromFile() {
         }
     }
     fclose(file);
+}
+// (Don't forget the function prototypes at the top of the file!)
+
+void searchContact() {
+    char search_name[MAX_NAME_LENGTH];
+    int found = 0;
+    printf("Enter name to search for: ");
+    fgets(search_name, MAX_NAME_LENGTH, stdin);
+    search_name[strcspn(search_name, "\n")] = 0; // Remove newline
+
+    for (int i = 0; i < contact_count; i++) {
+        if (strcmp(contacts[i].name, search_name) == 0) {
+            printf("\n--- Contact Found ---\n");
+            printf("  Name:  %s\n", contacts[i].name);
+            printf("  Phone: %s\n", contacts[i].phone);
+            printf("  Email: %s\n", contacts[i].email);
+            printf("---------------------\n");
+            found = 1;
+            break;
+        }
+    }
+    if (!found) {
+        printf("Contact not found.\n");
+    }
+}
+
+void deleteContact() {
+    char search_name[MAX_NAME_LENGTH];
+    int found_index = -1;
+    printf("Enter name of contact to delete: ");
+    fgets(search_name, MAX_NAME_LENGTH, stdin);
+    search_name[strcspn(search_name, "\n")] = 0; // Remove newline
+
+    for (int i = 0; i < contact_count; i++) {
+        if (strcmp(contacts[i].name, search_name) == 0) {
+            found_index = i;
+            break;
+        }
+    }
+
+    if (found_index != -1) {
+        // Shift all elements after the found index to the left
+        for (int i = found_index; i < contact_count - 1; i++) {
+            contacts[i] = contacts[i + 1];
+        }
+        contact_count--;
+        printf("Contact deleted successfully.\n");
+    } else {
+        printf("Contact not found.\n");
+    }
 }
