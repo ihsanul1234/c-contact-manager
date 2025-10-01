@@ -62,3 +62,51 @@ int main() {
     }
     return 0;
 }
+void addContact() {
+    if (contact_count >= MAX_CONTACTS) {
+        printf("Contact list is full!\n");
+        return;
+    }
+
+    Contact new_contact;
+    printf("Enter name: ");
+    fgets(new_contact.name, MAX_NAME_LENGTH, stdin);
+    new_contact.name[strcspn(new_contact.name, "\n")] = 0; // Remove newline
+
+    printf("Enter phone number: ");
+    fgets(new_contact.phone, MAX_PHONE_LENGTH, stdin);
+    new_contact.phone[strcspn(new_contact.phone, "\n")] = 0;
+
+    printf("Enter email: ");
+    fgets(new_contact.email, MAX_EMAIL_LENGTH, stdin);
+    new_contact.email[strcspn(new_contact.email, "\n")] = 0;
+
+    contacts[contact_count] = new_contact;
+    contact_count++;
+
+    printf("Contact added successfully!\n");
+}
+void viewContacts() {
+    if (contact_count == 0) {
+        printf("No contacts to display.\n");
+        return;
+    }
+
+    printf("\n--- All Contacts ---\n");
+    for (int i = 0; i < contact_count; i++) {
+        printf("Contact #%d\n", i + 1);
+        printf("  Name:  %s\n", contacts[i].name);
+        printf("  Phone: %s\n", contacts[i].phone);
+        printf("  Email: %s\n", contacts[i].email);
+        printf("\n");
+    }
+    printf("--------------------\n");
+}
+// ... inside the switch
+case 1:
+    addContact();
+    break;
+case 2:
+    viewContacts();
+    break;
+// ...
