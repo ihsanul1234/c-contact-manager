@@ -19,14 +19,14 @@ Follow these instructions to compile and run the project on your local machine.
 
 ## **Prerequisites**
 
-You need a C compiler installed on your system. The most common one is *gcc*, which is part of the GNU Compiler Collection.
+You need a C compiler installed on your system. The most common one is `gcc`, which is part of the GNU Compiler Collection.
 ## **Compilation**
 
 1. Clone the repository or download the main.c file to your computer.
 2. Open your terminal or command prompt and navigate to the directory where the file is located.
 3. Run the following command to compile the source code into an executable file named contact_manager:
 
-'gcc main.c -o contact_manager'
+`gcc main.c -o contact_manager`
 
 ## **Running the Application**
 
@@ -34,10 +34,10 @@ Once the compilation is successful, you can run the program with this command:
 
 **On macOS or Linux:**
 
-'./contact_manager'
+`./contact_manager`
 
 **On Windows:**
 
-'contact_manager.exe'
+`contact_manager.exe`
 
 You will then be greeted with the main menu, and you can start managing your contacts.
