@@ -20,6 +20,10 @@ int contact_count = 0;
 // Function prototypes (we'll define these later)
 void addContact();
 void viewContacts();
+void searchContact();
+void deleteContact();
+void saveContactsToFile();
+void loadContactsFromFile();
 
 int main() {
     int choice;
