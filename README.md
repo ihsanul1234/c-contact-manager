@@ -5,6 +5,10 @@ This is a simple but robust command-line application written in C for managing p
 
 The application allows users to add, view, search for, and delete contacts. All contact data is persisted to a binary file (contacts.dat), so your information is saved even after the program is closed.
 
+## **Program Interface**
+
+![Contact Manager Interface](contact_manager.png)
+
 ## **Features**
 
 -Add a New Contact: Save a person's name, phone number, and email address.
